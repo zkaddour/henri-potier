@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/henri-potier/static/css/main.8bed1dec.css",
-    "main.js": "/henri-potier/static/js/main.000e9d36.js",
+    "main.js": "/henri-potier/static/js/main.2c020fdb.js",
     "static/js/787.58cea82d.chunk.js": "/henri-potier/static/js/787.58cea82d.chunk.js",
     "index.html": "/henri-potier/index.html",
     "main.8bed1dec.css.map": "/henri-potier/static/css/main.8bed1dec.css.map",
-    "main.000e9d36.js.map": "/henri-potier/static/js/main.000e9d36.js.map",
+    "main.2c020fdb.js.map": "/henri-potier/static/js/main.2c020fdb.js.map",
     "787.58cea82d.chunk.js.map": "/henri-potier/static/js/787.58cea82d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8bed1dec.css",
-    "static/js/main.000e9d36.js"
+    "static/js/main.2c020fdb.js"
   ]
 }
