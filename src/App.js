@@ -1,7 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  fetch('http://henri-potier.xebia.fr/books')
+        .then(results => results.json())
+        .then(results => console.log(results))
   return (
     <div className="App">
       <header className="App-header">
