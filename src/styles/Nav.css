@@ -1,0 +1,13 @@
+.navbar {
+    text-align: left;
+}
+.navitem {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    text-decoration: none;
+}
+.navitem a {
+    text-decoration: none;
+    color: black;
+}
