@@ -7,17 +7,9 @@ const Nav = () => {
     const {cartState, setCartState, cartSize} = useContext(CartContext);
     return ( 
         <div className="navbar">
-            <ul className="navbar">
-                <li className="navitem">
-                    <Link to="/">Home</Link> 
-                </li>
-                <li className="navitem">
-                    <Link to="/about">About</Link> 
-                </li>
-                <li className="navitem">
-                    <Link to="/cart">Cart {cartSize}</Link> 
-                </li>
-            </ul>
+            <Link to="/" className='navitem'>Home</Link>
+            <Link to="/about" className='navitem'>About</Link>
+            <Link to="/cart" className='navitem'>Cart <span className='cartsize'>{cartSize}</span></Link> 
         </div>
      );
 }

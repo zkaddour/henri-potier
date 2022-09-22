@@ -50,32 +50,17 @@ function Cart(props) {
   
   if (cartSize === 0) {
     return(
-      <div>
+      <div className="content">
         <h2 key="">Cart is empty, no items to display.</h2>
       </div>
     )
   } else {
     return (
-      <div className="Library">
+      <div className="content library">
         {showItemInfo}
       </div>
     );
   }
 }
 
-function createURL(map){
-  var f = '';
-
-  for (let [k,v] of map){
-    let r = Array(v).fill(k).join(',');
-    if (f === '') {
-      f += r;
-    } else {
-      f += ',' + r;
-    }
-  }
-  return f;
-}
-
 export default Cart;
-//new Map(map.set(key, value));

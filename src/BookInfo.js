@@ -1,12 +1,11 @@
-//import './styles/BookInfo.css';
+import './styles/BookInfo.css';
 import { useState, useEffect} from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function BookInfo(props) {
   const { isbn } = useParams();
   
   const [showBookInfo, setShowBookInfo] = useState()
-  const navigate = useNavigate();
   const apiUrl = 'http://henri-potier.xebia.fr/books';
   let displayData
 
@@ -18,21 +17,20 @@ function BookInfo(props) {
         
         displayData = () => {
           return(
-            <div  key={book.isbn} className="book">
-                <div className="cover">
-                    <img src={book.cover} alt="Book Cover" />
+            <div  key={book.isbn} className="bookInfo">
+                <div className="bookCover">
+                  <img src={book.cover} alt="Book Cover" />
                 </div>
-                <div className="info">
-                    <div className="mainInfo">
-                        <h1 className="title">{book.title}</h1>
-                        <span className="price">{book.price}€</span>
-                    </div>
-                    <span className="synopsis">{book.synopsis}</span>
-                    <span className="isbn">{book.isbn}</span>
-                    <button className="addToCart" onClick={() => {
-                      props.onUpdate(book.isbn, 1);
-                      navigate('/');
-                    }}>Add To Cart</button>
+                <div className="bookInfo">
+                  <h1 className="bookTitle">{book.title}</h1>
+                  <span className="bookPrice">{(Math.round(book.price * 100) / 100).toFixed(2)}€</span>
+                  <span className="bookIsbn">isbn: {book.isbn}</span>
+                  <button className="bookAddToCart" onClick={() => {
+                    props.onUpdate(book.isbn, 1);
+                  }}>Add To Cart</button>
+                </div>
+                <div className="bookBio">
+                  <p className="bookSynopsis">{book.synopsis}</p>
                 </div>
             </div>
           )
@@ -49,7 +47,7 @@ function BookInfo(props) {
   })
   
   return (
-    <div className="Library">
+    <div className="content">
       {showBookInfo}
     </div>
   );

@@ -33,7 +33,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <CartContext.Provider value={{cartState, setCartState, cartSize}}>
         <Nav />
         <Routes>
