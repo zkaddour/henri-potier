@@ -60,7 +60,7 @@ The Price component also calculates the best offer every time the contents of th
 
 This components serves the simple purpose of handeling any issues that might arise from attemting to enter a false link. It notifies the user that the requested page does not exist and provide a redirect link towards the Home page.
 
-## Other Thoughts
+## Last Thoughts
 
 While I believe the project, as is right now, answers well to the request of the client. However, there are quite a few things I wish I could go back to and improve upon in the future:
 
