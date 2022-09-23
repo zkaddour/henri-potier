@@ -1,14 +1,18 @@
-import './styles/Cart.css';
 import { useState, useContext, useEffect } from "react";
 import { CartContext } from './CartContext';
-import { Link } from 'react-router-dom';
+import Price from './Price';
 
 function Cart(props) {
-  const {cartState, setCartState, cartSize} = useContext(CartContext);
+  const {cartState, cartSize, totalPrice} = useContext(CartContext);
   const [showItemInfo, setShowItemInfo] = useState()
   
   const apiUrl = 'http://henri-potier.xebia.fr/books';
   let displayData
+
+  function updateListing(k, v, p) {
+    props.onUpdate(k, v, p);
+    pullBookData();
+  }
 
   function pullBookData() {
     fetch(apiUrl, {method: 'GET'})
@@ -17,25 +21,31 @@ function Cart(props) {
         displayData = responseData.map(function(book) {
           if (Array.from(cartState.keys()).includes(book.isbn)) {
             return(
-              <div  key={book.isbn} className="book">
-                <div className="cover">
+              <div  key={book.isbn} className="listingBook">
+                <div className="listingCover">
                     <img src={book.cover} alt="Book Cover" />
                 </div>
-                <div className="info">
-                    <div className="mainInfo">
-                        <h1 className="title">{book.title}</h1>
-                        <span className="price">{book.price}€</span>
-                    </div>
-                    <span className="synopsis">{book.synopsis}</span>
-                    <span className="isbn">{book.isbn}</span>
-                    <button className="addToCart" onClick={() => {
-                      props.onUpdate(book.isbn, -1);
-                    }}>Remove from Cart</button>
-                    <h3>{cartState.get(book.isbn)}</h3>
+                <div className="listingInfo">
+                  <h1 className="listingTitle">{book.title}</h1>
+                  <h2 className="listingPrice">{(Math.round(book.price * 100) / 100).toFixed(2)}€</h2>
+                  <h3 className="listingIsbn"><b>ISBN:</b> {book.isbn}</h3>
+                  <br />
+                  <div className="updateInfo">
+                    <button className="updateCart" onClick={(e) => {
+                      updateListing(book.isbn, -1, book.price*-1);
+                    }}>-</button>
+                    <span className='currentAmount'>{cartState.get(book.isbn)}</span>
+                    <button className="updateCart" onClick={(e) => {
+                      updateListing(book.isbn, 1, book.price);
+                    }}>+</button>
+                    <button className="updateCart" onClick={(e) => {
+                      updateListing(book.isbn, -cartState.get(book.isbn), cartState.get(book.isbn)*book.price*-1);
+                    }}>Delete</button>
+                  </div>
                 </div>
             </div>
             )
-          } else return
+          } else return null
         })
         setShowItemInfo(displayData)
       })
@@ -46,7 +56,7 @@ function Cart(props) {
 
   useEffect(() => {
     pullBookData()
-  })
+  }, [])
   
   if (cartSize === 0) {
     return(
@@ -56,8 +66,11 @@ function Cart(props) {
     )
   } else {
     return (
-      <div className="content library">
-        {showItemInfo}
+      <div>
+        <div className="content cart">
+          {showItemInfo}
+        </div>
+        <Price />
       </div>
     );
   }

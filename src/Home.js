@@ -1,4 +1,3 @@
-import './styles/Home.css';
 import { useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 
@@ -15,13 +14,11 @@ function Home() {
           return(
             <div key={book.isbn} className='item'>
                 <Link to={`/book/${book.isbn}`}>
-                    <div className="itemCover">
-                      <img src={book.cover} />
-                    </div>
-                    <div className="itemInfo">
-                      <h4 className="itemTitle">{book.title}</h4>
-                      <p className="itemPrice">{(Math.round(book.price * 100) / 100).toFixed(2)}€</p>
-                    </div>
+                  <img src={book.cover} alt="Book Cover" className="itemCover" />
+                  <div className="itemInfo">
+                    <h4 className="itemTitle">{book.title}</h4>
+                    <p className="itemPrice">{(Math.round(book.price * 100) / 100).toFixed(2)}€</p>
+                  </div>
                 </Link>
             </div>
           )
@@ -35,11 +32,11 @@ function Home() {
 
   useEffect(() => {
     pullBookData()
-  })
+  }, [])
   
   return (
     <div className="content">
-      <input type="text" id="mySearch" onKeyUp={searchLibrary} placeholder="Search.." title="Type in a category"></input>
+      <input type="text" id="mySearch" onKeyUp={searchLibrary} placeholder="Recherche..." title="Type in a category"></input>
       <div className="library">
         {showBooks}
       </div>
