@@ -56,9 +56,9 @@ const Price = () => {
     
     return ( 
         <div className="price">
-            <h3 className="priceHeader">Total: <span className="priceSpan totalPrice">{(Math.round(totalPrice * 100) / 100).toFixed(2)}</span></h3>
-            <h3 className="priceHeader">Offert: <span className="priceSpan offeredPrice">{(Math.round((totalPrice-showPrice) * 100) / 100).toFixed(2)}</span></h3>
-            <h3 className="priceHeader">Prix Réduit: <span className="priceSpan reducedPrice">{(Math.round(showPrice * 100) / 100).toFixed(2)}</span></h3>
+            <h3 className="priceHeader">Total: <span className="priceSpan totalPrice">{(Math.round(totalPrice * 100) / 100).toFixed(2)}€</span></h3>
+            <h3 className="priceHeader">Offert: <span className="priceSpan offeredPrice">{(Math.round((totalPrice-showPrice) * 100) / 100).toFixed(2)}€</span></h3>
+            <h3 className="priceHeader">Prix Réduit: <span className="priceSpan reducedPrice">{(Math.round(showPrice * 100) / 100).toFixed(2)}€</span></h3>
             <br />
             <button className='purchase' onClick={()=>{ alert("Merci pour l'achat !\nMais comme il s'agit d'une page web de test, c'est ici que l'aventure se termine."); }}>
                 Acheter Maintenant</button>

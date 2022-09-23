@@ -13,7 +13,7 @@ function App() {
   const [cartSize, setCartSize] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const updateMap = (key, value, price) => {
+  const updateCart = (key, value, price) => {
     let exists = false;
     if(cartState.has(key)){
       value += cartState.get(key);
@@ -40,8 +40,8 @@ function App() {
         <Nav />
         <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route exact path='/cart' element={<><Cart onUpdate={updateMap} /></>} />
-          <Route exact path='/book/:isbn' element={<BookInfo onUpdate={updateMap} />} />
+          <Route exact path='/cart' element={<><Cart onUpdate={updateCart} /></>} />
+          <Route exact path='/book/:isbn' element={<BookInfo onUpdate={updateCart} />} />
           <Route exact path='/about' element={<About />} />
           <Route path="*" element={<E404 />} />
         </Routes>
