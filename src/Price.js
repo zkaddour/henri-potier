@@ -6,15 +6,15 @@ const Price = () => {
     const [showPrice, setShowPrice] = useState(0);
     const [reductionPrice, setReductionPrice] = useState(0);
 
-    const fullURL = "http://henri-potier.xebia.fr/books/" + createURL(cartState) + "/commercialOffers";
-    
-    function calculateOffer() {
+    useEffect(() => {
+        const fullURL = "http://henri-potier.xebia.fr/books/" + createURL(cartState) + "/commercialOffers";
+
         fetch(fullURL, {method: 'GET'})
         .then(response => response.json())
         .then(responseData => {
             let bestOffer = totalPrice;
             const offers = responseData['offers'];
-            offers.forEach(offer => {
+            offers.map(offer => {
                 switch (offer['type']) {
                     case "percentage":
                         if (percentage(totalPrice, offer['value']) < bestOffer) {
@@ -35,21 +35,18 @@ const Price = () => {
                         bestOffer = totalPrice;
                         break;
                 }
-            });
+                return bestOffer;
+            })
             setShowPrice(bestOffer);
         })
         .catch((error) => {
             console.log(error)
         })
-    }
-
-    useEffect(() => {
-        calculateOffer();
-    }, [cartSize])
+    }, [cartState, cartSize, totalPrice])
     useEffect(() => {
         let r = totalPrice - showPrice;
         setReductionPrice(r);
-    }, [showPrice])
+    }, [showPrice, totalPrice])
     
     return ( 
         <div className="price">

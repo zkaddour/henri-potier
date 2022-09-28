@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 function Home() {
   const [showBooks, setshowBooks] = useState()
   const apiUrl = 'http://henri-potier.xebia.fr/books';
-  let displayData
+  
+  useEffect(() => {
+    let displayData
 
-  function pullBookData() {
     fetch(apiUrl, {method: 'GET'})
       .then(response => response.json())
       .then(responseData => {
@@ -28,15 +29,11 @@ function Home() {
       .catch((error) => {
         console.log(error)
       })
-  }
-
-  useEffect(() => {
-    pullBookData()
-  }, [])
+  }, [showBooks])
   
   return (
     <div className="content">
-      <input type="text" id="mySearch" onKeyUp={searchLibrary} placeholder="Recherche..." title="Type in a category"></input>
+      <input type="text" id="mySearch" onKeyUp={searchLibrary} placeholder="Recherche..." title="Type in a category" />
       <div className="library">
         {showBooks}
       </div>
